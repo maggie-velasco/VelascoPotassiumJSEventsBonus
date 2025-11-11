@@ -1,0 +1,106 @@
+<body>
+    <h1>Welcome to the Reaction Game!</h1>
+    <h2>Instructions: Click anywhere to generate a random letter. You will have to enter the right key to get a point. The box on the right shows the your score!</h2>
+    <h2>Good luck!</h2>
+    <h3 id="counter"></h3>
+    <p id="letter"></p>
+    <script>
+      document.body.onclick = generateRand;
+      document.body.onkeypress = checkLetter;
+      let untilwhat = 10;
+      let counter = 0;
+      let newOne;
+      
+      function generateRand(newLetter) {
+        const letters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+        let randomHEH = Math.floor(Math.random() * letters.length);
+        newOne = letters[randomHEH];
+        document.getElementById("letter").innerText = newOne;
+      }
+      
+      function checkLetter(event) {
+        let k = event.key;
+        let tof;
+        if(k == newOne) {
+          tof = "✅ Correct!";
+          counter++;
+          document.getElementById("counter").innerText = "Score: " + counter + "/" + untilwhat;
+          if(counter >= untilwhat) {
+            document.getElementById("counter").innerText = "YAY! YOU FINISHED! Here is your score: " + counter + "/" + untilwhat;
+            document.body.onclick = null;
+          }
+        }
+        else {
+          tof = "❌ Try again!"
+          document.getElementById("counter").innerText = tof;
+          if(newOne) {
+            document.getElementById("letter").innerText = currentLetter;
+          }
+        }
+        document.getElementById("letter").innerText = tof;
+      }
+      document.addEventListener("keydown", outputKey);
+        
+        
+    </script>
+    <footer>
+        &copy; 2025 Maggie Velasco. All Rights Reserved :3
+    </footer>
+</body>
+<style>
+  body {
+    font-family:;
+    background-image:url('https://images.template.net/378147/Aesthetic-Computer-Background-edit-online.jpg');
+    background-repeat:no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size:cover;
+  }
+  h1 {
+    text-align:center;
+    font-family:"Copperplate", fantasy;
+    height:35px;
+    width:100%;
+    padding:10px;
+    top:0px;
+    background-color:#DEB887;
+  }
+  h2 {
+    text-align:center;
+  }
+  #letter {
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+    justify-content:center;
+    padding:15px;
+    width:30%;
+    height: 150px;
+    background-color:#f8d7ac;
+    border-radius:20px;
+    font-size: 50px;
+    top: 30px;
+  }
+  #counter {
+    clear:both;
+    text-align:center;
+    margin-right:40px;
+    padding:10px;
+    border-radius:15px;
+    background-color:#f8d7ac;
+    float:right;
+    width:20%;
+    height:40%;
+    font-size: 50px;
+    justify-content: center;
+  }
+  footer {
+    background-color:#DEB887;
+    text-align:center;
+    bottom:0;
+    width:100%;
+    clear:both;
+    position:absolute;
+    font-size:20px;
+  }
+</style>
